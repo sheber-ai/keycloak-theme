@@ -1,0 +1,162 @@
+{
+  "realm": "sheber",
+  "displayName": "Sheber",
+  "enabled": true,
+  "sslRequired": "external",
+  "loginTheme": "sheber",
+  "internationalizationEnabled": true,
+  "supportedLocales": [
+    "ru",
+    "kk"
+  ],
+  "defaultLocale": "ru",
+  "registrationAllowed": true,
+  "registrationEmailAsUsername": true,
+  "loginWithEmailAllowed": true,
+  "duplicateEmailsAllowed": false,
+  "resetPasswordAllowed": true,
+  "rememberMe": true,
+  "verifyEmail": false,
+  "accessTokenLifespan": 300,
+  "smtpServer": {
+    "host": "mailpit",
+    "port": "1025",
+    "from": "no-reply@sheber.local",
+    "fromDisplayName": "Sheber"
+  },
+  "roles": {
+    "realm": [
+      {
+        "name": "offline_access",
+        "description": "${role_offline-access}"
+      },
+      {
+        "name": "uma_authorization",
+        "description": "${role_uma_authorization}"
+      },
+      {
+        "name": "client",
+        "description": "Orders furniture"
+      },
+      {
+        "name": "contractor",
+        "description": "Furniture workshop"
+      },
+      {
+        "name": "admin",
+        "description": "Platform administrator"
+      },
+      {
+        "name": "default-roles-sheber",
+        "description": "Granted to every new user",
+        "composite": true,
+        "composites": {
+          "realm": [
+            "offline_access",
+            "uma_authorization",
+            "client"
+          ]
+        }
+      }
+    ]
+  },
+  "defaultRole": {
+    "name": "default-roles-sheber"
+  },
+  "clients": [
+    {
+      "clientId": "sheber-frontend",
+      "name": "Sheber Frontend",
+      "enabled": true,
+      "publicClient": true,
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": false,
+      "implicitFlowEnabled": false,
+      "rootUrl": "http://localhost:5173",
+      "baseUrl": "/",
+      "redirectUris": [
+        "http://localhost:5173/*",
+        "http://localhost:8000/api/docs/oauth2-redirect"
+      ],
+      "webOrigins": [
+        "http://localhost:5173",
+        "http://localhost:8000"
+      ],
+      "attributes": {
+        "pkce.code.challenge.method": "S256",
+        "post.logout.redirect.uris": "http://localhost:5173/*"
+      },
+      "protocolMappers": [
+        {
+          "name": "audience: sheber-backend",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "config": {
+            "included.custom.audience": "sheber-backend",
+            "access.token.claim": "true",
+            "id.token.claim": "false",
+            "introspection.token.claim": "true"
+          }
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "username": "client@sheber.local",
+      "email": "client@sheber.local",
+      "emailVerified": true,
+      "firstName": "Айгерим",
+      "lastName": "Клиентова",
+      "enabled": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "sheber",
+          "temporary": false
+        }
+      ],
+      "realmRoles": [
+        "default-roles-sheber"
+      ]
+    },
+    {
+      "username": "contractor@sheber.local",
+      "email": "contractor@sheber.local",
+      "emailVerified": true,
+      "firstName": "Ерлан",
+      "lastName": "Мастеров",
+      "enabled": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "sheber",
+          "temporary": false
+        }
+      ],
+      "realmRoles": [
+        "default-roles-sheber",
+        "contractor"
+      ]
+    },
+    {
+      "username": "admin@sheber.local",
+      "email": "admin@sheber.local",
+      "emailVerified": true,
+      "firstName": "Админ",
+      "lastName": "Sheber",
+      "enabled": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "sheber",
+          "temporary": false
+        }
+      ],
+      "realmRoles": [
+        "default-roles-sheber",
+        "admin"
+      ]
+    }
+  ]
+}

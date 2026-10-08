@@ -1,0 +1,8 @@
+# Only the archive is versioned
+/sheber/
+
+.DS_Store
+._*
+.idea/
+.vscode/
+.claude/settings.local.json

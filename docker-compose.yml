@@ -1,0 +1,25 @@
+# Local Keycloak for theme, backend and frontend development. Run `make up`.
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.8.0
+    # start-dev disables theme caching; the realm is imported on first start only
+    command: start-dev --import-realm
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: admin
+      KC_CACHE: local
+    ports:
+      - "8080:8080"
+    volumes:
+      # Mount the repo root so the theme survives pack/unpack (only dirs with login/theme.properties count as themes)
+      - ./:/opt/keycloak/themes:ro
+      - ./realm:/opt/keycloak/data/import:ro
+    depends_on:
+      - mailpit
+
+  # Catches outgoing mail: http://localhost:8025
+  mailpit:
+    image: axllent/mailpit
+    ports:
+      - "1025:1025"
+      - "8025:8025"
