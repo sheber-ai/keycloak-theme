@@ -99,6 +99,18 @@
           }
         }
       ]
+    },
+    {
+      "clientId": "sheber-backend",
+      "name": "Sheber Backend",
+      "description": "Service account: grants the contractor role after workshop approval",
+      "enabled": true,
+      "publicClient": false,
+      "secret": "sheber-backend-local-secret",
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "implicitFlowEnabled": false,
+      "serviceAccountsEnabled": true
     }
   ],
   "users": [
@@ -157,6 +169,18 @@
         "default-roles-sheber",
         "admin"
       ]
+    },
+    {
+      "username": "service-account-sheber-backend",
+      "enabled": true,
+      "serviceAccountClientId": "sheber-backend",
+      "clientRoles": {
+        "realm-management": [
+          "manage-users",
+          "view-users",
+          "view-realm"
+        ]
+      }
     }
   ]
 }

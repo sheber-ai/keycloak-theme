@@ -35,7 +35,7 @@
 
 - `realm/sheber-realm.json` — только для локальной разработки. Клиенты, роли и тестовые пользователи
   описаны в README. После правки — `make reset`.
-- Имена realm'а (`sheber`), клиента (`sheber-frontend`), аудитории (`sheber-backend`) и ролей
+- Имена realm'а (`sheber`), клиентов (`sheber-frontend`, `sheber-backend`), аудитории (`sheber-backend`) и ролей
   (`client`, `contractor`, `admin`) используются в `../backend` и `../frontend` — меняйте согласованно.
 
 ## Git

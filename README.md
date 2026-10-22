@@ -43,6 +43,7 @@ make up        # распакует тему (если папки нет) и з�
 | Client ID | Тип | Для чего |
 |---|---|---|
 | `sheber-frontend` | public, PKCE S256 | вход во frontend (`http://localhost:5173`) и Swagger backend'а (`http://localhost:8000/api/docs`). Audience mapper добавляет в access token `aud: sheber-backend` — его проверяет backend |
+| `sheber-backend` | confidential, service account | backend через Admin API выдаёт и снимает роль `contractor` при модерации мастерских. Секрет `sheber-backend-local-secret` (только локально), права `realm-management`: `manage-users`, `view-users`, `view-realm` |
 
 ## Работа с темой
 
